@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'channels',
-
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +42,8 @@ INSTALLED_APPS = [
 
     'chat',
 ]
+# ASGI_APPLICATION
+ASGI_APPLICATION = "project.asgi.application"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -71,9 +73,15 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = 'project.wsgi.application'
-ASGI_APPLICATION = 'project.asgi.application'
+# WSGI_APPLICATION
+WSGI_APPLICATION = "project.wsgi.application"
 
+# Channel Layers
+CHANNEL_LAYERS = {
+    'default':{
+        'BACKEND':'channels.layers.InMemoryChannelLayer'
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
